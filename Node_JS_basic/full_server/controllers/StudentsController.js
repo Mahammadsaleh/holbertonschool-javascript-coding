@@ -1,14 +1,9 @@
 /* eslint-disable */
+
 import readDatabase from "../utils";
 
-/**
- * The list of supported majors.
- */
 const VALID_MAJORS = ["CS", "SWE"];
 
-/**
- * Contains the student-related route handlers.
- */
 class StudentsController {
   static getAllStudents(request, response) {
     const dataPath = process.argv.length > 2 ? process.argv[2] : "";
@@ -16,6 +11,7 @@ class StudentsController {
     readDatabase(dataPath)
       .then((studentGroups) => {
         const responseParts = ["This is the list of our students"];
+
         const cmpFxn = (a, b) => {
           if (a[0].toLowerCase() < b[0].toLowerCase()) {
             return -1;
@@ -54,6 +50,7 @@ class StudentsController {
       response.status(500).send("Major parameter must be CS or SWE");
       return;
     }
+
     readDatabase(dataPath)
       .then((studentGroups) => {
         let responseText = "";
